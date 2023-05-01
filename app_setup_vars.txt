@@ -1,0 +1,65 @@
+var.audience
+  Env variable for cloud run service. The audience for JWT validation. Should be the domain portion of your URL
+
+  Enter a value: gcpmarketplace.revieve.com
+
+var.brand_name
+  The name of the oauth brand
+
+  Enter a value: revieve
+
+var.brand_support_email
+  The email for oauth support
+
+  Enter a value: esteve@revieve.com
+
+var.doit_easily_image
+  The image path of doit-easily to deploy
+
+  Enter a value: europe-docker.pkg.dev/revieve-public/docker-registry-europe/doi-it-easy:latest
+
+var.domain
+  Domain name to run the load balancer on. Used if `ssl` is `true`.
+
+  Enter a value: gcpmarketplace.revieve.com
+
+var.external_ip_name
+  The name of the external IP resource
+
+  Enter a value: revieve-external-ip
+
+var.iap_client_display_name
+  The display name of the oauth client
+
+  Enter a value: revieve-oauth
+
+var.lb_name
+  Name for load balancer and associated resources
+
+  Enter a value: revieve-loadbalancer
+
+var.managed_zone_name
+  The name of the managed zone to insert an A record
+
+  Enter a value: gpcmarketplace-revieve-com
+
+var.managed_zone_project
+  The project id of the managed zone
+
+  Enter a value: revieve-public
+
+var.project_id
+  Env variable for cloud run service. The project id where your listing resides (and marketplace subscription)
+
+  Enter a value: revieve-public
+
+var.project_number
+  The project number
+
+  Enter a value: 516037450294
+
+var.region
+  Location for load balancer and Cloud Run resources
+
+  Enter a value: europe-west1
+

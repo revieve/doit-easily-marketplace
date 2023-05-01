@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
-export COMPANY_NAME="Put your company name here"
+export COMPANY_NAME="revieve"
 
 # Step 1
-gcloud projects create $COMPANY_NAME-public
+# gcloud projects create $COMPANY_NAME-public
 
 # Step 2
 gcloud projects add-iam-policy-binding $COMPANY_NAME-public \

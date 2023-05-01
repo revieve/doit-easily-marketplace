@@ -1,0 +1,7 @@
+var.billing_id
+  The billing id of the billing account: 
+  01729F-91238C-B158FF
+
+var.project_id
+  The name of the isv marketplace project. All lower, numbers/hyphens allowed, must end in '-public'.
+  revieve-public
