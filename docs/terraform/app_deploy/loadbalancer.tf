@@ -1,8 +1,8 @@
 # Get the managed DNS zone
 
-data "google_dns_managed_zone" "dns_zone" {
-  name     = var.managed_zone_name
-  project = var.managed_zone_project
+resource "google_dns_managed_zone" "dns_zone" {
+  name     = "gcpmarketplace"
+  dns_name = "gcpmarketplace.revieve.com."
 }
 
 resource "google_compute_global_address" "external_ip" {
@@ -13,7 +13,7 @@ resource "google_dns_record_set" "api" {
   name         = "${var.domain}."
   type         = "A"
   ttl          = 300
-  managed_zone = data.google_dns_managed_zone.dns_zone.name
+  managed_zone = google_dns_managed_zone.dns_zone.name
   rrdatas      = [google_compute_global_address.external_ip.address]
 }
 
