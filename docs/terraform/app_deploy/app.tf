@@ -66,7 +66,7 @@ resource "google_secret_manager_secret" "settings_toml" {
 resource "google_secret_manager_secret_version" "settings_toml" {
   secret      = google_secret_manager_secret.settings_toml.id
   secret_data = file("${path.module}/custom-settings.toml")
-  enabled = false
+  enabled     = true
 }
 
 
@@ -75,4 +75,7 @@ resource "google_secret_manager_secret_iam_binding" "setting_toml_accessors" {
   members = ["serviceAccount:${local.service_account_email}"]
   project = var.project_id
   role = "roles/secretmanager.secretAccessor"
+}
+}
+}
 }
