@@ -5,7 +5,3 @@ output "service_account" {
 output "topic" {
   value = google_pubsub_subscription.doit_easily_subscription.topic
 }
-
-output "project" {
-  value = google_pubsub_subscription.doit_easily_subscription.project
-}
