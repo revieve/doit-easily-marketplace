@@ -13,6 +13,11 @@ resource "google_pubsub_topic_iam_member" "event_topic_doit_easily_publisher" {
 }
 
 #the subscription that get entitlement messages from Google
+# To make this work you will need to add the service account in the marketplace product manually. To do it:
+# - Go to the producer portal.
+# - Select the product you are integrating.
+# - In technical integration review hit the Edit button.
+# - In section 2 cloud pub/sub integration link the service account provided in the outputs.
 resource "google_pubsub_subscription" "doit_easily_subscription" {
   name     = "doit-easily${local.codelab_suffix}"
   topic    = local.topic
