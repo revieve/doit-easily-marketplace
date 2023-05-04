@@ -6,7 +6,7 @@ resource "google_dns_managed_zone" "dns_zone" {
 }
 
 resource "google_compute_global_address" "external_ip" {
-  name     = var.external_ip_name
+  name = var.external_ip_name
 }
 # Add the IP to the DNS
 resource "google_dns_record_set" "api" {
@@ -25,7 +25,7 @@ resource "google_compute_url_map" "url_map" {
     path_matcher = "allpaths"
   }
   path_matcher {
-    name = "allpaths"
+    name            = "allpaths"
     default_service = module.api-lb.backend_services["default"].self_link
     path_rule {
       paths   = ["/login"]
@@ -43,11 +43,11 @@ module "api-lb" {
   ssl                             = true
   managed_ssl_certificate_domains = [var.domain]
   https_redirect                  = true
-#  labels                          = { "example-label" = "cloud-run-example" }
-  url_map                         = google_compute_url_map.url_map.self_link
+  #  labels                          = { "example-label" = "cloud-run-example" }
+  url_map        = google_compute_url_map.url_map.self_link
   create_url_map = false
-  address                         = google_compute_global_address.external_ip.address
-  create_address                  = false
+  address        = google_compute_global_address.external_ip.address
+  create_address = false
   backends = {
     default = {
       description = null
@@ -74,7 +74,7 @@ module "api-lb" {
 
     frontend = {
       description = "public endpoint for frontend integration"
-      groups      = [
+      groups = [
         {
           group = google_compute_region_network_endpoint_group.api_lb_neg.id
         }
@@ -83,7 +83,7 @@ module "api-lb" {
       security_policy         = null
       custom_request_headers  = null
       custom_response_headers = null
-      iap_config              = {
+      iap_config = {
         enable               = false
         oauth2_client_id     = ""
         oauth2_client_secret = ""
