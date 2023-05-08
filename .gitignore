@@ -3,6 +3,4 @@
 img
 .terraform*
 venv
-*.tfvars
-*.tfstate
 *.tfstate.backup
