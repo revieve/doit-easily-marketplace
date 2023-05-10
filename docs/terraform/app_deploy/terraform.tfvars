@@ -1,6 +1,6 @@
-audience                = "gcpmarketplace.revieve.com"
+audience                = "api.gcpmarketplace.revieve.com"
 brand_name              = "revieve"
-brand_support_email     = "esteve@revieve.com"
+brand_support_email     = "marketplace-support@revieve.com"
 doit_easily_image       = "europe-docker.pkg.dev/revieve-public/docker-registry-europe/doi-it-easy:latest"
 domain                  = "gcpmarketplace.revieve.com"
 external_ip_name        = "revieve-external-ip"
