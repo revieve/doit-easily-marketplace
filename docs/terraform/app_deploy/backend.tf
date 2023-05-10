@@ -1,5 +1,6 @@
 terraform {
-#  backend "gcs" {
-#    bucket = "com-doit-public-terraform-state"
-#  }
+  backend "gcs" {
+    bucket = "revieve-terraform-state"
+    prefix = "terraform/doit/doit-marketplace-thehardway"
+  }
 }
