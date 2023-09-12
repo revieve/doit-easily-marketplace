@@ -74,18 +74,19 @@ def handle_entitlement(
     logger.debug("handle_entitlement", event_dict=event, event_type=event_type)
     entitlement_id = event["id"]
     entitlement = procurement_api.get_entitlement(entitlement_id)
-    entitlement["id"] = entitlement_id
-    logger.debug(
-        f"checked procurement api for entitlement",
-        entitlement=entitlement,
-        entitlement_id=entitlement_id,
-    )
 
     if not entitlement:
         # Do nothing. The entitlement has to be canceled to be deleted, so
         # this has already been handled by a cancellation message.
         logger.debug("entitlement not found in procurement api, nothing to do")
         return
+
+    entitlement["id"] = entitlement_id
+    logger.debug(
+        "checked procurement api for entitlement",
+        entitlement=entitlement,
+        entitlement_id=entitlement_id,
+    )
 
     # Get the product name from the entitlement object
     product_name = entitlement["product"]
@@ -112,12 +113,11 @@ def handle_entitlement(
         return
 
     entitlement_state = entitlement["state"]
-    logger.debug(f"entitlement state", state=entitlement_state)
+    logger.debug("entitlement state", state=entitlement_state)
 
     # NOTE: because we don't persist any of this info to a local DB, there isn't much to do in this app.
     if event_type == "ENTITLEMENT_CREATION_REQUESTED":
         if entitlement_state == "ENTITLEMENT_ACTIVATION_REQUESTED":
-            logger.debug(f"HERE {product_settings.marketplace_project}")
             if product_settings.auto_approve_entitlements:
                 logger.debug("auto approving entitlement")
                 procurement_api.approve_entitlement(entitlement_id)

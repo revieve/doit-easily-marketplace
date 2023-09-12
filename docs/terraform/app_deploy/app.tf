@@ -8,40 +8,8 @@ resource "google_cloud_run_service" "doit_easily_cloudrun_service" {
       containers {
         image = var.doit_easily_image
         env {
-          name  = "SLACK_WEBHOOK"
-          value = var.slack_webhook
-        }
-        env {
-          name  = "EVENT_TOPIC"
-          value = var.event_topic_name != "" ? google_pubsub_topic.event_topic[0].id : ""
-        }
-        env {
-          name  = "IS_CODELAB"
-          value = var.is_codelab
-        }
-        env {
-          name  = "MARKETPLACE_PROJECT"
-          value = var.project_id
-        }
-        env {
-          name  = "SUBSCRIPTION_ID"
-          value = var.subscription_id
-        }
-        env {
-          name  = "AUTO_APPROVE_ENTITLEMENTS"
-          value = var.auto_approve_entitlements
-        }
-        env {
-          name  = "ENABLE_PUSH_ENDPOINT"
-          value = var.enable_push_endpoint
-        }
-        env {
           name  = "LOG_LEVEL"
           value = var.log_level
-        }
-        env {
-          name  = "AUDIENCE"
-          value = var.audience
         }
         volume_mounts {
           name       = "toml-config"
@@ -54,7 +22,7 @@ resource "google_cloud_run_service" "doit_easily_cloudrun_service" {
           secret_name = "settings-toml"
           #          default_mode = 292 # 0444
           items {
-            key  = "latest"
+            key  = var.secret_version
             path = "custom-settings.toml" # name of file
             #            mode = 256 # 0400
           }
@@ -106,4 +74,13 @@ resource "google_secret_manager_secret_iam_binding" "setting_toml_accessors" {
   members = ["serviceAccount:${local.service_account_email}"]
   project = var.project_id
   role = "roles/secretmanager.secretAccessor"
+}
+
+#allow the doit-easily SA to invoke the cloudrun app
+resource "google_cloud_run_service_iam_member" "doit_easily_cloudrun_invoker" {
+  member  = "serviceAccount:${local.service_account_email}"
+  project = var.project_id
+  role    = "roles/run.invoker"
+  service = google_cloud_run_service.doit_easily_cloudrun_service.name
+  location = var.cloudrun_location
 }
