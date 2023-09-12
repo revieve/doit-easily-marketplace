@@ -17,6 +17,7 @@ We recommend the first approach, using the requested variables.
 ## Setup
 
 Note: These steps can be accomplished by applying this [Terraform][6] or [gcloud][7].
+[Terraform][6] is preferred way to execute the setup.
 
 1. Create a project to hold your listings and backend integration workloads. The project name should be in the format `ISV-public`.
 
@@ -65,7 +66,7 @@ Note: These steps can be accomplished by applying this [Terraform][8].
 
      1. (Optional.) Use a custom domain by setting up a load balancer in front of Cloud Run.
 
-     2. (Optional.) Add the SSO Login URL for your console, and support SSO.
+     2. (Optional.) Add the SSO Login URL for your console, and support SSO. OR link to your website and disable SSO
 
    <details>
    <summary>Screen Capture</summary>
@@ -73,7 +74,7 @@ Note: These steps can be accomplished by applying this [Terraform][8].
    ![Diagram](../img/proc-url-screen-cap.png)
    </details>  
 
-1. To test the integration, see our [detailed doc on testing](10)
+1. To test the integration, see our [detailed doc on testing][10]
 
 1. Submit the product details, pricing details, and technical integration for review by Google.
 
@@ -82,7 +83,6 @@ Note: These steps can be accomplished by applying this [Terraform][8].
 [1]: https://docs.google.com/forms/d/e/1FAIpQLSfddn4mwKnqtLNQ-m7IgRZ-bgTz4BOsrEDWCf3XBjc_ogKNnA/viewform
 [2]: https://console.cloud.google.com/producer-portal
 [3]: https://cloud.google.com/marketplace/docs/partners/integrated-saas#checklist
-[4]: install-gke.md
 [5]: install-cloudrun.md
 [6]: terraform/setup
 [7]: gcloud/setup
