@@ -12,7 +12,7 @@ resource "google_pubsub_topic_iam_member" "event_topic_doit_easily_publisher" {
   topic  = google_pubsub_topic.event_topic[0].name
 }
 
-#the subscription that get entitlement messages from Google
+# The subscription that gets entitlement messages from Google
 # To make this work you will need to add the service account in the marketplace product manually. To do it:
 # - Go to the producer portal.
 # - Select the product you are integrating.

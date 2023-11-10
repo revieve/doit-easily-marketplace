@@ -12,6 +12,7 @@ data "terraform_remote_state" "dns_zone" {
 resource "google_compute_global_address" "external_ip" {
   name = var.external_ip_name
 }
+
 # Add the IP to the DNS
 resource "google_dns_record_set" "api" {
   name         = "${var.domain}."
@@ -47,7 +48,7 @@ module "api-lb" {
   ssl                             = true
   managed_ssl_certificate_domains = [var.domain]
   https_redirect                  = true
-  #  labels                          = { "example-label" = "cloud-run-example" }
+  # labels                          = { "example-label" = "cloud-run-example" }
   url_map        = google_compute_url_map.url_map.self_link
   create_url_map = false
   address        = google_compute_global_address.external_ip.address
